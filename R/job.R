@@ -16,6 +16,7 @@ snowflake <- get_connections_fn(
 Sys.sleep(2)
 conn <- snowflake("TRANSIENT")
 
+print(getcwd())
 
 # Do data stuff
 # Here we just get current timestamp
