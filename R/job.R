@@ -2,7 +2,7 @@
 library(reticulate)
 library(data.table)
 library(dplyr)
-source_python(paste0(getwd(),'/src/1. Data Functions.py'))
+source_python(paste0('/src/1. Data Functions.py'))
 
 
 # connect to snowflake
