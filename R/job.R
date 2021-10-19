@@ -2,7 +2,7 @@
 library(reticulate)
 library(data.table)
 library(dplyr)
-source_python(paste0(getcwd(), '/src/1. Data Functions.py'))
+source_python(paste0(getwd(), '/src/1. Data Functions.py'))
 
 
 # connect to snowflake
@@ -16,7 +16,7 @@ snowflake <- get_connections_fn(
 Sys.sleep(2)
 conn <- snowflake("TRANSIENT")
 
-print(getcwd())
+print(getwd())
 
 # Do data stuff
 # Here we just get current timestamp
