@@ -48,12 +48,23 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
-
+      
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
-          
+  
+      - name: Install Miniconda
+        run: |
+          Rscript -e "remotes::install_github('rstudio/reticulate')"
+          Rscript -e "reticulate::install_miniconda()"
+
+      - name: Install pyDependencies
+        run: |
+          Rscript -e "reticulate::conda_create('r-reticulate', packages = c('python==3.7', 'snowflake-connector-python', 'pandas', 'numpy'))"
+          Rscript -e "remotes::install_local()"
+               
+        
       - name: Generate data
         run: |
           source("R/job.R")
